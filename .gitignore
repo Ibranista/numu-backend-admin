@@ -1,0 +1,3 @@
+# Ignore environment variables and Firebase credentials
+.env
+backend/firebase-adminsdk.json
