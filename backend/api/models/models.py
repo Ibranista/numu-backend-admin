@@ -14,3 +14,22 @@ class UserProfile(models.Model):
 
     def __str__(self):
         return f"{self.user.email} ({self.firebase_uid}) - {self.role}"
+
+# The __str__() method controls how the object appears when you print it or view it in places like:
+# note: child must be created with concerns (many - many)
+class Child(models.Model):
+    MALE = 'male'
+    FEMALE = 'female'
+    GENDER_CHOICES = [
+        (MALE, 'Male'),
+        (FEMALE, 'Female'),
+    ]
+
+    therapistMatches = models.ManyToManyField('TherapistMatch', related_name='children', blank=True)
+    name = models.CharField(max_length=255)
+    gender = models.CharField(max_length=6, choices=GENDER_CHOICES)
+    birthDate = models.DateField()
+    parent = models.ForeignKey(User, on_delete=models.CASCADE, related_name='children')
+    concerns = models.ManyToManyField('Concern', related_name='children', blank=True)
+    def __str__(self):
+        return self.name
