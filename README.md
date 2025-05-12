@@ -1,49 +1,67 @@
 # NUMU Backend Admin
 
-This project is a Django backend with real-time capabilities using Django Channels and WebSocket connections.
+NUMU Backend Admin is a Django backend with real-time capabilities using Django Channels and WebSocket connections. It supports scalable, interactive applications and is ready for both local and networked socket connections.
 
 ## Features
 
-- **Django Channels** for WebSocket support for real-time communication
-- **Redis/Memurai** as the channel layer backend (for windows use memurai or use WSL)
+- ⚡ Real-time communication with Django Channels (WebSocket support)
+- 🔗 Redis/Memurai as the channel layer backend (Memurai recommended for Windows)
+- 🔒 Secure environment variable management for secrets (including Firebase)
 
-## Installation & Environment Preparation
+## Getting Started
 
-1. **Activate Evnironment**
-2. **Install Python 3** (used python 3.13.3 for this project)
-3. **Install pipenv** for environment and dependency management:
+### 1. Clone the repository
 
-   ```
-   source env/bin/activate
-   or
-   source env/Scripts/activate
-   ```
+```bash
+git clone git@github.com:Ibranista/numu-backend-admin.git
+```
 
-   pip shell
-   pip install pipenv
+### 2. Prepare your environment
 
-````
+- Install Python 3 (used: 3.13.3)
+- Install pipenv for environment and dependency management:
 
-4. **Install dependencies and activate the environment:**
+```bash
+pip install pipenv
+```
 
-   ```bash
-   pipenv install
-   pipenv shell
-````
+- Activate your environment (choose the correct command for your OS):
 
-## Running the Server
+```bash
+source env/bin/activate
+# or (Windows)
+source env/Scripts/activate
+```
 
-- **For local development (accessible on localhost):**
+- Enter pipenv shell:
 
-  ```bash
-  pipenv run daphne -p 8000 backend.asgi:application
-  ```
+```bash
+pipenv shell
+```
 
-- **For network access (e.g., from an emulator or other devices):**
+### 3. Install dependencies
 
-  ```bash
-  pipenv run daphne -b 0.0.0.0 -p 8000 backend.asgi:application
-  ```
+```bash
+pipenv install
+```
+
+### 4. Configure environment variables
+
+- Ensure your `.env` file is set up with all required secrets and environment variables (see project docs for details).
+
+### 5. Run the server
+
+- For local development (localhost):
+
+```bash
+pipenv run daphne -p 8000 backend.asgi:application
+```
+
+- For network access (e.g., emulator or other devices):
+
+```bash
+pipenv run daphne -b 0.0.0.0 -p 8000 backend.asgi:application
+```
 
 ## Channel Layer Backend
 
@@ -55,3 +73,7 @@ This project is a Django backend with real-time capabilities using Django Channe
 
 - Ensure your `.env` file is set up with all required secrets and environment variables.
 - For Firebase integration, credentials are loaded from environment variables for security.
+
+---
+
+**Happy developing with NUMU Backend Admin!**
