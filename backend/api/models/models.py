@@ -54,3 +54,26 @@ class Expertise(models.Model):
     
     def __str__(self):
         return self.expertise
+    
+# therapist match model
+class TherapistMatch(models.Model):
+    STATUS_ACCEPTED = 'accepted'
+    STATUS_PENDING = 'pending'
+    STATUS_DECLINED = 'declined'
+    STATUS_CHOICES = [
+        (STATUS_ACCEPTED, 'Accepted'),
+        (STATUS_PENDING, 'Pending'),
+        (STATUS_DECLINED, 'Declined'),
+    ]
+    child = models.ForeignKey('Child', on_delete=models.CASCADE, related_name='therapist_matches')
+    therapist = models.ForeignKey('Therapist', on_delete=models.CASCADE, related_name='child_matches')
+    status = models.CharField(max_length=10, choices=STATUS_CHOICES, default=STATUS_PENDING)
+    decline_reason = models.TextField(blank=True, null=True) 
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f"{self.child.name} - {self.therapist.name} ({self.status})"
+
+    class Meta:
+        unique_together = ('child', 'therapist')
