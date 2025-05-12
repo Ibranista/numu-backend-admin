@@ -36,7 +36,7 @@ class Child(models.Model):
     def __str__(self):
         return self.name
     
-    # therapist model
+# therapist model
 class Therapist(models.Model):
     name = models.CharField(max_length=255)
     image = models.ImageField(upload_to='therapist_images/')
@@ -47,3 +47,10 @@ class Therapist(models.Model):
 
     def __str__(self):
         return self.name
+    
+# expertise model
+class Expertise(models.Model):
+    expertise = models.CharField(max_length=100, unique=True)
+    
+    def __str__(self):
+        return self.expertise
