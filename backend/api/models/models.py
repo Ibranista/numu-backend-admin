@@ -33,6 +33,17 @@ class Child(models.Model):
     birthDate = models.DateField()
     parent = models.ForeignKey(User, on_delete=models.CASCADE, related_name='children')
     concerns = models.ManyToManyField('Concern', related_name='children', blank=True)
+    languages = models.JSONField(default=list, blank=True)
+    has_emotional_distress_signs = models.BooleanField(default=False) 
+    is_behavior_challenging = models.BooleanField(default=False) 
+    struggle_with_social = models.BooleanField(default=False)
+    child_activeness = models.BooleanField(default=False)
+    has_difficulty_movement = models.BooleanField(default=False) 
+    has_learning_problems = models.BooleanField(default=False)  
+    has_communication_problems = models.BooleanField(default=False)  
+    has_meal_problems = models.BooleanField(default=False)  
+    has_difficulty_with_sleep = models.BooleanField(default=False) 
+    did_we_miss_anything = models.TextField(blank=True, null=True) 
     def __str__(self):
         return self.name
     
