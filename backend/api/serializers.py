@@ -107,6 +107,17 @@ class ChildSerializer(serializers.ModelSerializer):
     concerns = ChildConcernSerializer(many=True, read_only=True)
     therapist_matches = serializers.SerializerMethodField()
     acceptedTherapists = serializers.SerializerMethodField()
+    languages = serializers.ListField(child=serializers.CharField(), required=False)
+    has_emotional_distress_signs = serializers.BooleanField(required=False)
+    is_behavior_challenging = serializers.BooleanField(required=False)
+    struggle_with_social = serializers.BooleanField(required=False)
+    child_activeness = serializers.BooleanField(required=False)
+    has_difficulty_movement = serializers.BooleanField(required=False)
+    has_learning_problems = serializers.BooleanField(required=False)
+    has_communication_problems = serializers.BooleanField(required=False)
+    has_meal_problems = serializers.BooleanField(required=False)
+    has_difficulty_with_sleep = serializers.BooleanField(required=False)
+    did_we_miss_anything = serializers.CharField(required=False, allow_blank=True, allow_null=True)
 
     concern_ids = serializers.PrimaryKeyRelatedField(
         many=True,
